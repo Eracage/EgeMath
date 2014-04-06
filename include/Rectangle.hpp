@@ -2,7 +2,7 @@
 #ifndef RECTANGLE_H_EGEMATH
 #define RECTANGLE_H_EGEMATH
 
-#include "Vector2.hpp"
+#include <Vector2.hpp>
 
 namespace ege
 {
