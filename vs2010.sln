@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EgeMath", "Projects\EgeMath.vcxproj", "{894A78ED-4B08-40D2-99EF-AE91E32F1428}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EgeMath", "EgeMath\VSProject\EgeMath.vcxproj", "{894A78ED-4B08-40D2-99EF-AE91E32F1428}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
