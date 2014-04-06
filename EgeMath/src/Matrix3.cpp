@@ -1,4 +1,4 @@
-#include "../include/Matrix3.hpp"
+#include <Matrix3.hpp>
 
 
 namespace ege

@@ -2,7 +2,7 @@
 #ifndef VECTOR4_H_EGEMATH
 #define VECTOR4_H_EGEMATH
 
-#include "Vector3.hpp"
+#include <Vector3.hpp>
 
 namespace ege
 {
