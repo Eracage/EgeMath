@@ -9,6 +9,7 @@ namespace ege
 		public:
 			Vector2();
 			Vector2(float X, float Y);
+			Vector2(float Value);
 			~Vector2();
 
 			float LenghtSquared() const;

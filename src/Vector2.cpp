@@ -9,6 +9,9 @@ namespace ege
 	Vector2::Vector2(float X, float Y)
 		: x(X), y(Y)
 	{}
+	Vector2::Vector2(float Value)
+		: x(Value), y(Value)
+	{}
 	Vector2::~Vector2(){}
 	
 	float Vector2::LenghtSquared() const
