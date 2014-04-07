@@ -1,4 +1,4 @@
-#include <Matrix3.hpp>
+#include <EgeMath/Matrix3.hpp>
 
 
 namespace ege

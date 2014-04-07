@@ -1,5 +1,5 @@
-#include <Matrix4.hpp>
-#include <Math.hpp>
+#include <EgeMath/Matrix4.hpp>
+#include <EgeMath/Math.hpp>
 
 namespace ege
 {

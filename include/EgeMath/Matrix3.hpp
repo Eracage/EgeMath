@@ -2,7 +2,7 @@
 #ifndef MATRIX3_H_EGEMATH
 #define MATRIX3_H_EGEMATH
 
-#include <Vector3.hpp>
+#include <EgeMath/Vector3.hpp>
 
 
 namespace ege

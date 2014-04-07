@@ -1,5 +1,5 @@
 #include <cmath>
-#include <Math.hpp>
+#include <EgeMath/Math.hpp>
 
 namespace ege
 {

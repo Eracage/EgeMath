@@ -1,6 +1,6 @@
 #include <cmath>
 #include <cassert>
-#include <Math.hpp>
+#include <EgeMath/Math.hpp>
 
 namespace ege
 {

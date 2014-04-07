@@ -2,8 +2,8 @@
 #ifndef MATRIX4_H_EGEMATH
 #define MATRIX4_H_EGEMATH
 
-#include <Vector4.hpp>
-#include <Matrix3.hpp>
+#include <EgeMath/Vector4.hpp>
+#include <EgeMath/Matrix3.hpp>
 
 namespace ege
 {
