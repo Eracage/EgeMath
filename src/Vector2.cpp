@@ -26,7 +26,7 @@ namespace ege
 	}
 	float Vector2::AngleDegrees() const
 	{
-		return AngleRadians()*180.0/PI;
+		return AngleRadians()*180.0f/PI;
 	}
 
 	void Vector2::Transform(const Vector2 position)
@@ -36,7 +36,7 @@ namespace ege
 	}
 	void Vector2::RotateDegrees(const float degrees)
 	{
-		RotateRadians(degrees/180.0*PI);
+		RotateRadians(degrees/180.0f*PI);
 	}
 	void Vector2::RotateRadians(const float radians)
 	{
