@@ -4,12 +4,14 @@
 
 namespace ege
 {
-	class vector3
+	template<typename T>
+	class Vector3
 	{
 	public:
-		vector3();
-		vector3(float X, float Y, float Z);
-		~vector3();
+		Vector3();
+		Vector3(T X, T Y, T Z);
+		Vector3(T Value);
+		~Vector3();
 
 		float getLenght();
 		

@@ -11,8 +11,8 @@ namespace ege
 	public:
 		rectangle();
 		rectangle(float Left, float Top, float Width, float Height);
-		rectangle(Vector2 Position, float Width, float Height);
-		rectangle(Vector2 Position, Vector2 Size);
+		rectangle(vec2 Position, float Width, float Height);
+		rectangle(vec2 Position, vec2 Size);
 
 		~rectangle();
 
@@ -32,7 +32,7 @@ namespace ege
 		float getBottom() const;
 
 		bool Intersects(rectangle otherRectangle) const;
-		bool Contains(Vector2 Position) const;
+		bool Contains(Vec2 Position) const;
 	private:
 
 	};

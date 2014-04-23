@@ -7,11 +7,15 @@
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <Extensions>h;hpp;hxx;hm;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Inline Files">
+      <UniqueIdentifier>{2c5efd4d-3660-4dd0-b1de-a8c697118afa}</UniqueIdentifier>
+      <Extensions>inl</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -22,9 +26,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Rectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Vector3.cpp">
@@ -62,5 +63,25 @@
     <ClInclude Include="..\include\EgeMath\Math.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\EgeMath\Matrix3.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="..\include\EgeMath\Matrix4.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="..\include\EgeMath\Rectangle.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="..\include\EgeMath\Vector2.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="..\include\EgeMath\Vector3.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="..\include\EgeMath\Vector4.inl">
+      <Filter>Inline Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

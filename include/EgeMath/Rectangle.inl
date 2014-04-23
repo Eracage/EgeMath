@@ -13,7 +13,7 @@ namespace ege
 	{
 		assert(!(width<0||height<0));
 	}
-	rectangle::rectangle(Vec2 Position, float Width, float Height)
+	rectangle::rectangle(Vector2 Position, float Width, float Height)
 		: left(Position.x),
 		  top(Position.y),
 		  width(Width),
@@ -21,7 +21,7 @@ namespace ege
 	{
 		assert(!(width<0||height<0));
 	}
-	rectangle::rectangle(Vec2 Position, Vec2 Size)
+	rectangle::rectangle(Vector2 Position, Vector2 Size)
 		: left(Position.x),
 		  top(Position.y),
 		  width(Size.x),
