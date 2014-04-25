@@ -11,7 +11,7 @@ namespace ege
 	{}
 	vector3::~vector3(){}
 
-	float vector3::getLenght()
+	float vector3::getLength()
 	{	
 		return sqrt(pow(x,2) + pow(y,2) + pow(z,2));
 	}
@@ -19,11 +19,11 @@ namespace ege
 	// Public
 	// Operators
 	
-	const float& vector3::operator [](const unsigned int& index) const
+	const float vector3::operator [](const unsigned int& index) const
 	{
 		return (&x)[index];
 	}
-	float& vector3::operator [](const unsigned int& index)
+	float vector3::operator [](const unsigned int& index)
 	{
 		return (&x)[index];
 	}
@@ -57,11 +57,11 @@ namespace ege
 		return LeftVal;
 	}
 
-	vector3 operator /(const vector3& LeftVal, const float& RightVal)
+	vector3 operator /(const vector3& LeftVal, const float RightVal)
 	{
 		return vector3(LeftVal.x / RightVal,LeftVal.y / RightVal, LeftVal.z / RightVal);
 	}
-	const vector3& operator /=(vector3& LeftVal, const float& RightVal)
+	const vector3& operator /=(vector3& LeftVal, const float RightVal)
 	{
 		LeftVal.x /= (float)RightVal;
 		LeftVal.y /= (float)RightVal;
@@ -80,16 +80,16 @@ namespace ege
 		return !(LeftVal == RightVal);
 	}
 
-	vector3 operator *(const vector3& LeftVal, const float& RightVal)
+	vector3 operator *(const vector3& LeftVal, const float RightVal)
 	{
 		return vector3(LeftVal.x * RightVal,LeftVal.y * RightVal, LeftVal.z * RightVal);
 	}
-	vector3 operator *(const float& LeftVal, const vector3& RightVal)
+	vector3 operator *(const float LeftVal, const vector3& RightVal)
 	{
 		return vector3(LeftVal * RightVal.x,LeftVal * RightVal.y, LeftVal * RightVal.z);
 	}
 
-	const vector3& operator *=(vector3& LeftVal,const float& RightVal)
+	const vector3& operator *=(vector3& LeftVal,const float RightVal)
 	{
 		LeftVal.x *= RightVal;
 		LeftVal.y *= RightVal;

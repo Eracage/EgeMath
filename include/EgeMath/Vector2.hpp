@@ -5,21 +5,28 @@
 
 namespace ege
 {
+	const float PI = 3.14159265358979323846264f;
+
 	template<typename T>
 	class Vector2
 	{
 	public:
 
 		Vector2();
-		Vector2(T X, T Y);
-		Vector2(T Value);
+		Vector2(const T Value);
+		Vector2(const T X, const T Y);
+		Vector2(const Vector2<T>& V2);
 		~Vector2();
 
-		static float Dot(const Vector2<T> A, const Vector2<T> B);
+		static float Dot(const Vector2<T>& A, const Vector2<T>& B);
+		float Dot(const Vector2<T>& A) const;
 
-		float LenghtSquared() const;
+		static float Cross(const Vector2<T>& A, const Vector2<T>& B);
+		float Cross(const Vector2<T>& A) const;
 
-		float Lenght() const;
+		float LengthSquared() const;
+		float Length() const;
+
 		/*
 		Returns the angle of the vector in radians ranging from -PI to PI
 		*/
@@ -32,7 +39,7 @@ namespace ege
 		/*
 		Transforms the current vector by given position vector.
 		*/
-		void Transform(const Vector2 Position);
+		void Transform(const Vector2<T>& Position);
 		/*
 		Rotates the current vector by given amount of degrees.
 		*/
@@ -44,7 +51,7 @@ namespace ege
 		/*
 		Scales the current vector by given scale vector.
 		*/
-		void Scale(const Vector2 Scale);
+		void Scale(const Vector2<T>& Scale);
 
 		union{ T x, w;};
 		union{ T y, h;};
@@ -68,9 +75,9 @@ namespace ege
 	Vector2<T>& operator -=(Vector2<T>& LeftVal,const Vector2<T>& RightVal);
 	
 	template<typename T>
-	Vector2<T> operator /(const Vector2<T>& LeftVal,const float& RightVal);
+	Vector2<T> operator /(const Vector2<T>& LeftVal,const float RightVal);
 	template<typename T>
-	Vector2<T>& operator /=(Vector2<T>& LeftVal,const float& RightVal);
+	Vector2<T>& operator /=(Vector2<T>& LeftVal,const float RightVal);
 	
 	template<typename T>
 	bool operator ==(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
@@ -88,15 +95,12 @@ namespace ege
 	bool operator >=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
 	
 	template<typename T>
-	Vector2<T> operator *(const Vector2<T>& LeftVal, const float& RightVal);
+	Vector2<T> operator *(const Vector2<T>& LeftVal, const float RightVal);
 	template<typename T>
-	Vector2<T> operator *(const float& LeftVal, const Vector2<T>& RightVal);
+	Vector2<T> operator *(const float LeftVal, const Vector2<T>& RightVal);
 	
 	template<typename T>
-	Vector2<T>& operator *=(Vector2<T>& LeftVal, const float& RightVal);
-	
-	template<typename T>
-	float Dot(const Vector2<T> A, const Vector2<T> B);
+	Vector2<T>& operator *=(Vector2<T>& LeftVal, const float RightVal);
 	
 	template<typename T>
 	std::ostream& operator <<(std::ostream& Ostr, const Vector2<T>& RightVal);
@@ -106,5 +110,5 @@ namespace ege
 	typedef Vector2<int>			Vec2i;
 	typedef Vector2<unsigned int>	Vec2u;
 }
-#include <EgeMath/Vector2.inl>
+#include "inline/Vector2.inl"
 #endif

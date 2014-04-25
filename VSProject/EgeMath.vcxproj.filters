@@ -19,23 +19,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Matrix3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Matrix4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Rectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vector3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vector4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\include\EgeMath\Matrix.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,27 +43,27 @@
     <ClInclude Include="..\include\EgeMath\Vector4.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\EgeMath\Math.hpp">
+    <ClInclude Include="..\include\EgeMath.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\include\EgeMath\Matrix3.inl">
+    <None Include="..\include\EgeMath\inline\Matrix3.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="..\include\EgeMath\Matrix4.inl">
+    <None Include="..\include\EgeMath\inline\Matrix4.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="..\include\EgeMath\Rectangle.inl">
+    <None Include="..\include\EgeMath\inline\Rectangle.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="..\include\EgeMath\Vector2.inl">
+    <None Include="..\include\EgeMath\inline\Vector2.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="..\include\EgeMath\Vector3.inl">
+    <None Include="..\include\EgeMath\inline\Vector3.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="..\include\EgeMath\Vector4.inl">
+    <None Include="..\include\EgeMath\inline\Vector4.inl">
       <Filter>Inline Files</Filter>
     </None>
   </ItemGroup>

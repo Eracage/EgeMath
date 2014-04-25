@@ -6,35 +6,30 @@
 
 namespace ege
 {
-	class rectangle
+	template<typename T>
+	class Rectangle
 	{
 	public:
-		rectangle();
-		rectangle(float Left, float Top, float Width, float Height);
-		rectangle(vec2 Position, float Width, float Height);
-		rectangle(vec2 Position, vec2 Size);
+		Rectangle();
+		Rectangle(const T Left, const T Top, const T Width, const T Height);
+		Rectangle(const Vector2<T>& Position, const T Width, const T Height);
+		Rectangle(const Vector2<T>& Position, const Vector2<T>& Size);
+		Rectangle(const Rectangle<T>& rectangle);
+		~Rectangle();
+		
+		union{T left, x;};
+		union{T top, y;};
+		union{T width;};
+		union{T height;};
 
-		~rectangle();
+		T getRight() const;
+		T getBottom() const;
 
-		union
-		{
-			struct 
-			{
-				float left, top, width, height;
-			};
-			struct
-			{
-				float x, y;
-			};
-		};
-
-		float getRight() const;
-		float getBottom() const;
-
-		bool Intersects(rectangle otherRectangle) const;
-		bool Contains(Vec2 Position) const;
-	private:
+		bool Intersects(const Rectangle<T>& otherRectangle) const;
+		bool Contains(const Vector2<T>& Position) const;
+		bool Contains(const Rectangle<T>& otherRectangle) const;
 
 	};
 }
+#include "inline/Rectangle.inl"
 #endif

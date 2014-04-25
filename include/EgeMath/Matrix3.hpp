@@ -35,9 +35,9 @@ namespace ege
 			r3(Row3)
 		{}
 		matrix3(
-			const float& r1c1,const float& r1c2,const float& r1c3,
-			const float& r2c1,const float& r2c2,const float& r2c3,
-			const float& r3c1,const float& r3c2,const float& r3c3)
+			const float r1c1,const float r1c2,const float r1c3,
+			const float r2c1,const float r2c2,const float r2c3,
+			const float r3c1,const float r3c2,const float r3c3)
 			:
 			r1(r1c1,r1c2,r1c3),
 			r2(r2c1,r2c2,r2c3),

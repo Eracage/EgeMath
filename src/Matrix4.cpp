@@ -38,10 +38,10 @@ namespace ege
 		r4(Row4)
 	{}
 	matrix4::matrix4(
-		const float& r1c1,const float& r1c2,const float& r1c3,const float& r1c4,
-		const float& r2c1,const float& r2c2,const float& r2c3,const float& r2c4,
-		const float& r3c1,const float& r3c2,const float& r3c3,const float& r3c4,
-		const float& r4c1,const float& r4c2,const float& r4c3,const float& r4c4)
+		const float r1c1,const float r1c2,const float r1c3,const float r1c4,
+		const float r2c1,const float r2c2,const float r2c3,const float r2c4,
+		const float r3c1,const float r3c2,const float r3c3,const float r3c4,
+		const float r4c1,const float r4c2,const float r4c3,const float r4c4)
 		:
 		r1(r1c1,r1c2,r1c3,r1c4),
 		r2(r2c1,r2c2,r2c3,r2c4),

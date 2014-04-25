@@ -11,14 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Matrix3.cpp" />
-    <ClCompile Include="..\src\Matrix4.cpp" />
-    <ClCompile Include="..\src\Rectangle.cpp" />
-    <ClCompile Include="..\src\Vector3.cpp" />
-    <ClCompile Include="..\src\Vector4.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\include\EgeMath\Math.hpp" />
     <ClInclude Include="..\include\EgeMath\Matrix.hpp" />
     <ClInclude Include="..\include\EgeMath\Matrix3.hpp" />
     <ClInclude Include="..\include\EgeMath\Matrix4.hpp" />
@@ -27,14 +19,15 @@
     <ClInclude Include="..\include\EgeMath\Vector2.hpp" />
     <ClInclude Include="..\include\EgeMath\Vector3.hpp" />
     <ClInclude Include="..\include\EgeMath\Vector4.hpp" />
+    <ClInclude Include="..\include\EgeMath.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\include\EgeMath\Matrix3.inl" />
-    <None Include="..\include\EgeMath\Matrix4.inl" />
-    <None Include="..\include\EgeMath\Rectangle.inl" />
-    <None Include="..\include\EgeMath\Vector2.inl" />
-    <None Include="..\include\EgeMath\Vector3.inl" />
-    <None Include="..\include\EgeMath\Vector4.inl" />
+    <None Include="..\include\EgeMath\inline\Matrix3.inl" />
+    <None Include="..\include\EgeMath\inline\Matrix4.inl" />
+    <None Include="..\include\EgeMath\inline\Rectangle.inl" />
+    <None Include="..\include\EgeMath\inline\Vector2.inl" />
+    <None Include="..\include\EgeMath\inline\Vector3.inl" />
+    <None Include="..\include\EgeMath\inline\Vector4.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{894A78ED-4B08-40D2-99EF-AE91E32F1428}</ProjectGuid>

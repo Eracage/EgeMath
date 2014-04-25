@@ -1,57 +1,89 @@
 #pragma once
 #ifndef VECTOR4_H_EGEMATH
 #define VECTOR4_H_EGEMATH
-
-#include <EgeMath/Vector3.hpp>
+#include "Vector3.hpp"
 
 namespace ege
 {
-	class vector4
+	template<typename T>
+	class Vector4
 	{
 	public:
-		vector4();
-		vector4(const vector3 Vec3, const float W);
-		vector4(const float X, const float Y, const float Z, const float W);
-		~vector4();
+		Vector4();
+		Vector4(const T Value);
+		Vector4(const T X, const T Y, const T Z, const T W);
+		Vector4(const Vector2<T>& V2, const T Z, const T W);
+		Vector4(const Vector3<T>& V3, const T W);
+		Vector4(const Vector4<T>& V4);
+		~Vector4();
+		
+		static float Dot(const Vector4<T>& A, const Vector4<T>& B);
+		float Dot(const Vector4<T>& A) const;
+		
+		float LengthSquared() const;
+		float Length() const;
+		
+		union{ T x, r;};
+		union{ T y, g;};
+		union{ T z, b;};
+		union{ T w, a;};
 
-		float getLenght();
-
-		union
-		{
-			struct
-			{
-				float x,y,z,w;
-			};
-			struct
-			{
-				float r,g,b,a;
-			};
-		};
-
-		const float& operator [](const unsigned int& index) const;
-		float& operator [](const unsigned int& index);
-	private:
+		const T& operator [](const unsigned int& index) const;
+		T& operator [](const unsigned int& index);
 	};
+
+
+	template<typename T>
+	Vector4<T> operator -(const Vector4<T>& RightVal);
 	
+	template<typename T>
+	Vector4<T> operator +(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
 
-	vector4 operator -(const vector4& RightVal);
-
-	vector4 operator +(const vector4& LeftVal,const vector4& RightVal);
-	vector4 operator -(const vector4& LeftVal,const vector4& RightVal);
-
-	const vector4& operator +=(vector4& LeftVal,const vector4& RightVal);
-	const vector4& operator -=(vector4& LeftVal,const vector4& RightVal);
-
-	vector4 operator /(const vector4& LeftVal,const float& RightVal);
-	const vector4& operator /=(vector4& LeftVal,const float& RightVal);
-
-	bool operator ==(const vector4& LeftVal,const vector4& RightVal);
-	bool operator !=(const vector4& LeftVal,const vector4& RightVal);
-
-	vector4 operator *(const vector4& LeftVal, const float& RightVal);
-	vector4 operator *(const float& LeftVal, const vector4& RightVal);
-
-	const vector4& operator *=(vector4& LeftVal, const float& RightVal);
+	template<typename T>
+	Vector4<T> operator -(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
+	
+	template<typename T>
+	Vector4<T>& operator +=(Vector4<T>& LeftVal,const Vector4<T>& RightVal);
+	template<typename T>
+	Vector4<T>& operator -=(Vector4<T>& LeftVal,const Vector4<T>& RightVal);
+	
+	template<typename T>
+	Vector4<T> operator /(const Vector4<T>& LeftVal,const T& RightVal);
+	template<typename T>
+	Vector4<T>& operator /=(Vector4<T>& LeftVal,const T& RightVal);
+	
+	template<typename T>
+	bool operator ==(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
+	template<typename T>
+	bool operator !=(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
+	
+	template<typename T>
+	bool operator <(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
+	template<typename T>
+	bool operator <=(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
+	
+	template<typename T>
+	bool operator >(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
+	template<typename T>
+	bool operator >=(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
+	
+	template<typename T>
+	Vector4<T> operator *(const Vector4<T>& LeftVal, const T& RightVal);
+	template<typename T>
+	Vector4<T> operator *(const T& LeftVal, const Vector4<T>& RightVal);
+	
+	template<typename T>
+	Vector4<T>& operator *=(Vector4<T>& LeftVal, const T& RightVal);
+	
+	template<typename T>
+	std::ostream& operator <<(std::ostream& Ostr, const Vector4<T>& RightVal);
+	
+	typedef Vector4<float>			Vec4;
+	typedef Vector4<double>			Vec4d;
+	typedef Vector4<int>			Vec4i;
+	typedef Vector4<unsigned int>	Vec4u;
+	typedef Vector4<unsigned char>	Color;
 
 }
+#include "inline/Vector4.inl"
 #endif
