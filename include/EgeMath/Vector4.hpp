@@ -17,11 +17,11 @@ namespace ege
 		Vector4(const Vector4<T>& V4);
 		~Vector4();
 		
-		static float Dot(const Vector4<T>& A, const Vector4<T>& B);
-		float Dot(const Vector4<T>& A) const;
+		static double Dot(const Vector4<T>& A, const Vector4<T>& B);
+		double Dot(const Vector4<T>& A) const;
 		
-		float LengthSquared() const;
-		float Length() const;
+		double LengthSquared() const;
+		double Length() const;
 		
 		union{ T x, r;};
 		union{ T y, g;};

@@ -7,43 +7,45 @@
 
 namespace ege
 {
-	class matrix4
+	template<typename T>
+	class Matrix4
 	{
 	public:
+		static const Matrix4 Identity;
+		static const ROWS = 4
 		/**
 		Creates Identity Matrix
 		*/
-		matrix4();
-		matrix4(const float* FirstElement);
-		matrix4(const matrix3 mat3);
-		matrix4(
-			const vector4& Row1,
-			const vector4& Row2,
-			const vector4& Row3,
-			const vector4& Row4);
-		matrix4(
-			const float r1c1,const float r1c2,const float r1c3,const float r1c4,
-			const float r2c1,const float r2c2,const float r2c3,const float r2c4,
-			const float r3c1,const float r3c2,const float r3c3,const float r3c4,
-			const float r4c1,const float r4c2,const float r4c3,const float r4c4);
-		static const matrix4 Identity;
-		~matrix4();
+		Matrix4();
+		Matrix4(const T* FirstElement);
+		Matrix4(const matrix3 mat3);
+		Matrix4(
+			const Vector4<T>& Row1,
+			const Vector4<T>& Row2,
+			const Vector4<T>& Row3,
+			const Vector4<T>& Row4);
+		Matrix4(
+			const T r1c1,const T r1c2,const T r1c3,const T r1c4,
+			const T r2c1,const T r2c2,const T r2c3,const T r2c4,
+			const T r3c1,const T r3c2,const T r3c3,const T r3c4,
+			const T r4c1,const T r4c2,const T r4c3,const T r4c4);
+		~Matrix4();
 
-		float* FirstElement() const;
+		T* FirstElement() const;
 
-		const vector4& operator [](const unsigned int& index) const;
-		vector4& operator [](const unsigned int& index);
+		const Vector4<T>& operator [](const unsigned int& index) const;
+		Vector4<T>& operator [](const unsigned int& index);
 
 	private:
-		vector4 r1,r2,r3,r4;
+		Vector4<T> r1,r2,r3,r4;
 
 	};
 	
-	matrix4 operator *(const matrix4& LeftVal, const matrix4& RightVal);
-	const matrix4 operator *=(matrix4& LeftVal, const matrix4& RightVal);
+	Matrix4 operator *(const Matrix4& LeftVal, const Matrix4& RightVal);
+	const Matrix4 operator *=(Matrix4& LeftVal, const Matrix4& RightVal);
 
-	vector4 operator *(const vector4& LeftVal, const matrix4& RightVal);
-	const vector4 operator *=(vector4& LeftVal, const matrix4& RightVal);
+	Vector4<T> operator *(const Vector4<T>& LeftVal, const Matrix4& RightVal);
+	const Vector4<T> operator *=(Vector4<T>& LeftVal, const Matrix4& RightVal);
 	
 }
 

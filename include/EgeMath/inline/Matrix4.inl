@@ -1,73 +1,68 @@
-#include <EgeMath/Matrix4.hpp>
-#include <EgeMath/Math.hpp>
-
 namespace ege
 {
-	const matrix4 matrix4::Identity;
-	
-	matrix4::matrix4()
+	template<typename T> inline Matrix4<T>::Matrix4<T>()
 		:
-		r1(vector4(1.f,0.f,0.f,0.f)),
-		r2(vector4(0.f,1.f,0.f,0.f)),
-		r3(vector4(0.f,0.f,1.f,0.f)),
-		r4(vector4(0.f,0.f,0.f,1.f))
+		r1(Vector4<T>(T(1),T(0),T(0),T(0))),
+		r2(Vector4<T>(T(0),T(1),T(0),T(0))),
+		r3(Vector4<T>(T(0),T(0),T(1),T(0))),
+		r4(Vector4<T>(T(0),T(0),T(0),T(1)))
 	{}
-	matrix4::matrix4(const float* fe)
+	template<typename T> inline Matrix4<T>::Matrix4<T>(const T* fe)
 		:
 		r1(fe[0],fe[1],fe[2],fe[3]),
 		r2(fe[4],fe[5],fe[6],fe[7]),
 		r3(fe[8],fe[9],fe[10],fe[11]),
 		r4(fe[12],fe[13],fe[14],fe[15])
 	{}
-	matrix4::matrix4(const matrix3 mat3)
+	template<typename T> inline Matrix4<T>::Matrix4<T>(const matrix3 mat3)
 		:
-		r1(mat3[0],0.f),
-		r2(mat3[1],0.f),
-		r3(mat3[2],0.f),
-		r4(0.f,0.f,0.f,1.f)
+		r1(mat3[0],T(0)),
+		r2(mat3[1],T(0)),
+		r3(mat3[2],T(0)),
+		r4(T(0),T(0),T(0),T(1))
 	{}
-	matrix4::matrix4(
-		const vector4& Row1,
-		const vector4& Row2,
-		const vector4& Row3,
-		const vector4& Row4)
+	template<typename T> inline Matrix4<T>::Matrix4<T>(
+		const Vector4<T>& Row1,
+		const Vector4<T>& Row2,
+		const Vector4<T>& Row3,
+		const Vector4<T>& Row4)
 		: 
 		r1(Row1),
 		r2(Row2),
 		r3(Row3),
 		r4(Row4)
 	{}
-	matrix4::matrix4(
-		const float r1c1,const float r1c2,const float r1c3,const float r1c4,
-		const float r2c1,const float r2c2,const float r2c3,const float r2c4,
-		const float r3c1,const float r3c2,const float r3c3,const float r3c4,
-		const float r4c1,const float r4c2,const float r4c3,const float r4c4)
+	template<typename T> inline Matrix4<T>::Matrix4<T>(
+		const T r1c1,const T r1c2,const T r1c3,const T r1c4,
+		const T r2c1,const T r2c2,const T r2c3,const T r2c4,
+		const T r3c1,const T r3c2,const T r3c3,const T r3c4,
+		const T r4c1,const T r4c2,const T r4c3,const T r4c4)
 		:
 		r1(r1c1,r1c2,r1c3,r1c4),
 		r2(r2c1,r2c2,r2c3,r2c4),
 		r3(r3c1,r3c2,r3c3,r3c4),
 		r4(r4c1,r4c2,r4c3,r4c4)
 	{}
-	matrix4::~matrix4()
+	template<typename T> inline Matrix4<T>::~Matrix4<T>()
 	{}
 	
-	float* matrix4::FirstElement() const
+	template<typename T> inline T* Matrix4<T>::FirstElement() const
 	{
-		return (float*)&r1.x;
+		return (T*)&r1.x;
 	}
 	
-	const vector4& matrix4::operator [](const unsigned int& index) const
+	template<typename T> inline const Vector4<T>& Matrix4<T>::operator [](const unsigned int& index) const
 	{
 		return (&r1)[index];
 	}
-	vector4& matrix4::operator [](const unsigned int& index)
+	template<typename T> inline Vector4<T>& Matrix4<T>::operator [](const unsigned int& index)
 	{
 		return (&r1)[index];
 	}
 	
-	matrix4 operator *(const matrix4& RM, const matrix4& LM)
+	template<typename T> inline Matrix4<T> operator *(const Matrix4<T>& RM, const Matrix4<T>& LM)
 	{
-		const float L[4][4] = 
+		const T L[4][4] = 
 		{
 			LM[0][0],
 			LM[0][1],
@@ -86,7 +81,7 @@ namespace ege
 			LM[3][2],
 			LM[3][3]
 		};
-		const float R[4][4] = 
+		const T R[4][4] = 
 		{
 			RM[0][0],
 			RM[0][1],
@@ -107,7 +102,7 @@ namespace ege
 		};
 
 
-		return matrix4(
+		return Matrix4<T>(
 			L[0][0] * R[0][0] + L[1][0] * R[0][1] + L[2][0] * R[0][2] + L[3][0] * R[0][3],
 			L[0][1] * R[0][0] + L[1][1] * R[0][1] + L[2][1] * R[0][2] + L[3][1] * R[0][3],
 			L[0][2] * R[0][0] + L[1][2] * R[0][1] + L[2][2] * R[0][2] + L[3][2] * R[0][3],
@@ -126,16 +121,16 @@ namespace ege
 			L[0][3] * R[3][0] + L[1][3] * R[3][1] + L[2][3] * R[3][2] + L[3][3] * R[3][3]
 			);
 	}
-	const matrix4 operator *=(matrix4& LeftVal, const matrix4& RightVal)
+	template<typename T> inline const Matrix4<T> operator *=(Matrix4<T>& LeftVal, const Matrix4<T>& RightVal)
 	{
 		LeftVal = LeftVal * RightVal;
 		return LeftVal;
 	}
 
 	
-	vector4 operator *(const vector4& RV, const matrix4& LM)
+	template<typename T> inline Vector4<T> operator *(const Vector4<T>& RV, const Matrix4<T>& LM)
 	{
-		const float L[4][4] = 
+		const T L[4][4] = 
 		{
 			LM[0][0],
 			LM[0][1],
@@ -154,7 +149,7 @@ namespace ege
 			LM[3][2],
 			LM[3][3]
 		};
-		const float R[4] = 
+		const T R[4] = 
 		{
 			RV[0],
 			RV[1],
@@ -162,14 +157,14 @@ namespace ege
 			RV[3]
 		};
 
-		return vector4(
+		return Vector4<T>(
 			L[0][0] * R[0] + L[0][1] * R[1] + L[0][2] * R[2] + L[0][3] * R[3],
 			L[1][0] * R[0] + L[1][1] * R[1] + L[1][2] * R[2] + L[1][3] * R[3],
 			L[2][0] * R[0] + L[2][1] * R[1] + L[2][2] * R[2] + L[2][3] * R[3],
 			L[3][0] * R[0] + L[3][1] * R[1] + L[3][2] * R[2] + L[3][3] * R[3]
 			);
 	}
-	const vector4 operator *=(vector4& LeftVal, const matrix4& RightVal)
+	template<typename T> inline const Vector4<T> operator *=(Vector4<T>& LeftVal, const Matrix4<T>& RightVal)
 	{
 		LeftVal = LeftVal * RightVal;
 		return LeftVal;

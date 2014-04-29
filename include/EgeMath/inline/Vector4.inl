@@ -22,20 +22,20 @@ namespace ege
 	{}
 	template<typename T> inline Vector4<T>::~Vector4(){}
 	
-	template<typename T> inline static float Vector4<T>::Dot(const Vector4<T>& A, const Vector4<T>& B)
+	template<typename T> inline static double Vector4<T>::Dot(const Vector4<T>& A, const Vector4<T>& B)
 	{
 		return A.x * B.x + A.y * B.y + A.z * B.z + A.w * B.w;
 	}
-	template<typename T> inline float Vector4<T>::Dot(const Vector4<T>& A) const
+	template<typename T> inline double Vector4<T>::Dot(const Vector4<T>& A) const
 	{
 		return Dot(*this,A);
 	}
 
-	template<typename T> inline float Vector4<T>::LengthSquared() const
+	template<typename T> inline double Vector4<T>::LengthSquared() const
 	{	
 		return Dot(*this,*this);
 	}
-	template<typename T> inline float Vector4<T>::Length() const
+	template<typename T> inline double Vector4<T>::Length() const
 	{	
 		return sqrt(LengthSquared());
 	}

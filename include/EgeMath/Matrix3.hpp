@@ -15,9 +15,9 @@ namespace ege
 		*/
 		matrix3()
 			:
-			r1(vector3(1.f,0.f,0.f)),
-			r2(vector3(0.f,1.f,0.f)),
-			r3(vector3(0.f,0.f,1.f))
+			r1(vector3(1.f,T(0),T(0))),
+			r2(vector3(T(0),1.f,T(0))),
+			r3(vector3(T(0),T(0),1.f))
 		{}
 		matrix3(const float* FirstElement)
 			:
