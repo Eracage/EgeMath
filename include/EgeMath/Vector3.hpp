@@ -35,50 +35,32 @@ namespace ege
 	};
 
 
-	template<typename T>
-	Vector3<T> operator -(const Vector3<T>& RightVal);
+	template<typename T> Vector3<T> operator -(const Vector3<T>& RightVal);
 	
-	template<typename T>
-	Vector3<T> operator +(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-
-	template<typename T>
-	Vector3<T> operator -(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> Vector3<T> operator +(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> Vector3<T> operator -(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
 	
-	template<typename T>
-	Vector3<T>& operator +=(Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	template<typename T>
-	Vector3<T>& operator -=(Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> Vector3<T>& operator +=(Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> Vector3<T>& operator -=(Vector3<T>& LeftVal,const Vector3<T>& RightVal);
 	
-	template<typename T>
-	Vector3<T> operator /(const Vector3<T>& LeftVal,const float RightVal);
-	template<typename T>
-	Vector3<T>& operator /=(Vector3<T>& LeftVal,const float RightVal);
+	template<typename T> Vector3<T> operator /(const Vector3<T>& LeftVal,const float RightVal);
+	template<typename T> Vector3<T>& operator /=(Vector3<T>& LeftVal,const float RightVal);
 	
-	template<typename T>
-	bool operator ==(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	template<typename T>
-	bool operator !=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> bool operator ==(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> bool operator !=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
 	
-	template<typename T>
-	bool operator <(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	template<typename T>
-	bool operator <=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> bool operator <(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> bool operator <=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
 	
-	template<typename T>
-	bool operator >(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	template<typename T>
-	bool operator >=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> bool operator >(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
+	template<typename T> bool operator >=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
 	
-	template<typename T>
-	Vector3<T> operator *(const Vector3<T>& LeftVal, const float RightVal);
-	template<typename T>
-	Vector3<T> operator *(const float LeftVal, const Vector3<T>& RightVal);
+	template<typename T> Vector3<T> operator *(const Vector3<T>& LeftVal, const float RightVal);
+	template<typename T> Vector3<T> operator *(const float LeftVal, const Vector3<T>& RightVal);
 	
-	template<typename T>
-	Vector3<T>& operator *=(Vector3<T>& LeftVal, const float RightVal);
+	template<typename T> Vector3<T>& operator *=(Vector3<T>& LeftVal, const float RightVal);
 	
-	template<typename T>
-	std::ostream& operator <<(std::ostream& Ostr, const Vector3<T>& RightVal);
+	template<typename T> std::ostream& operator <<(std::ostream& Ostr, const Vector3<T>& RightVal);
 	
 	typedef Vector3<float>			Vec3;
 	typedef Vector3<double>			Vec3d;

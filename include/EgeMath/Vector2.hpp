@@ -13,19 +13,24 @@ namespace ege
 	public:
 
 		Vector2();
-		Vector2(const T Value);
-		Vector2(const T X, const T Y);
+		explicit Vector2(const T& Value);
+		Vector2(const T& X, const T& Y);
 		Vector2(const Vector2<T>& V2);
+		template<typename T2>
+		Vector2(const Vector2<T2>& V2);
 		~Vector2();
 
-		static float Dot(const Vector2<T>& A, const Vector2<T>& B);
-		float Dot(const Vector2<T>& A) const;
+		static T Dot(const Vector2<T>& A, const Vector2<T>& B);
+		T Dot(const Vector2<T>& A) const;
 
-		static float Cross(const Vector2<T>& A, const Vector2<T>& B);
-		float Cross(const Vector2<T>& A) const;
+		static T Cross(const Vector2<T>& A, const Vector2<T>& B);
+		T Cross(const Vector2<T>& A) const;
 
-		float LengthSquared() const;
-		float Length() const;
+		double LengthSquared() const;
+		double Length() const;
+
+		Vector2<T>& Normalize();
+		Vector2<T> UnitVector() const;
 
 		/*
 		Returns the angle of the vector in radians ranging from -PI to PI
@@ -60,50 +65,32 @@ namespace ege
 		T& operator [](const unsigned int& index);
 	};
 
-	template<typename T>
-	Vector2<T> operator -(const Vector2<T>& RightVal);
+	template<typename T> Vector2<T> operator -(const Vector2<T>& RightVal);
 	
-	template<typename T>
-	Vector2<T> operator +(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
-
-	template<typename T>
-	Vector2<T> operator -(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> Vector2<T> operator +(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> Vector2<T> operator -(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
 	
-	template<typename T>
-	Vector2<T>& operator +=(Vector2<T>& LeftVal,const Vector2<T>& RightVal);
-	template<typename T>
-	Vector2<T>& operator -=(Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> Vector2<T>& operator +=(Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> Vector2<T>& operator -=(Vector2<T>& LeftVal,const Vector2<T>& RightVal);
 	
-	template<typename T>
-	Vector2<T> operator /(const Vector2<T>& LeftVal,const float RightVal);
-	template<typename T>
-	Vector2<T>& operator /=(Vector2<T>& LeftVal,const float RightVal);
+	template<typename T> Vector2<T> operator /(const Vector2<T>& LeftVal,const T& RightVal);
+	template<typename T> Vector2<T>& operator /=(Vector2<T>& LeftVal,const T& RightVal);
 	
-	template<typename T>
-	bool operator ==(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
-	template<typename T>
-	bool operator !=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> bool operator ==(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> bool operator !=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
 	
-	template<typename T>
-	bool operator <(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
-	template<typename T>
-	bool operator <=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> bool operator <(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> bool operator <=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
 	
-	template<typename T>
-	bool operator >(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
-	template<typename T>
-	bool operator >=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> bool operator >(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
+	template<typename T> bool operator >=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal);
 	
-	template<typename T>
-	Vector2<T> operator *(const Vector2<T>& LeftVal, const float RightVal);
-	template<typename T>
-	Vector2<T> operator *(const float LeftVal, const Vector2<T>& RightVal);
+	template<typename T> Vector2<T> operator *(const Vector2<T>& LeftVal, const T& RightVal);
+	template<typename T> Vector2<T> operator *(const T& LeftVal, const Vector2<T>& RightVal);
 	
-	template<typename T>
-	Vector2<T>& operator *=(Vector2<T>& LeftVal, const float RightVal);
+	template<typename T> Vector2<T>& operator *=(Vector2<T>& LeftVal, const T& RightVal);
 	
-	template<typename T>
-	std::ostream& operator <<(std::ostream& Ostr, const Vector2<T>& RightVal);
+	template<typename T> std::ostream& operator <<(std::ostream& Ostr, const Vector2<T>& RightVal);
 
 	typedef Vector2<float>			Vec2;
 	typedef Vector2<double>			Vec2d;

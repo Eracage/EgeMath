@@ -49,9 +49,8 @@ namespace ege
 		return sqrt(LengthSquared());
 	}
 
-#pragma region Operators
+//#pragma region Operators
 
-	
 	template<typename T> inline const T& Vector3<T>::operator [](const unsigned int& index) const
 	{
 		assert(index>3);
@@ -153,6 +152,6 @@ namespace ege
 		return Ostr<<"("<<RightVal.x<<","<<RightVal.y<<","<<RightVal.z<<")";
 	}
 
-#pragma endregion
+//#pragma endregion
 
 }

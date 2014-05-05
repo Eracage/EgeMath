@@ -5,40 +5,44 @@ namespace ege
 	template<typename T> inline Vector2<T>::Vector2()
 			: x(T()), y(T())
 	{}
-	template<typename T> inline Vector2<T>::Vector2(const T Value)
+	template<typename T> inline Vector2<T>::Vector2(const T& Value)
 		: x(Value), y(Value)
 	{}
-	template<typename T> inline Vector2<T>::Vector2(const T X, const T Y)
+	template<typename T> inline Vector2<T>::Vector2(const T& X, const T& Y)
 		: x(X), y(Y)
 	{}
 	template<typename T> inline Vector2<T>::Vector2(const Vector2<T>& V2)
-		: x(V3.x), y(V3.y)
+		: x(V2.x), y(V2.y)
+	{}
+	template<typename T>
+	template<typename T2> inline Vector2<T>::Vector2(const Vector2<T2>& V2)
+		: x(static_cast<T>(V2.x)), y(static_cast<T>(V2.y))
 	{}
 	template<typename T> inline Vector2<T>::~Vector2(){}
 	
-	template<typename T> inline static float Vector2<T>::Dot(const Vector2<T>& A, const Vector2<T>& B)
+	template<typename T> inline static T Vector2<T>::Dot(const Vector2<T>& A, const Vector2<T>& B)
 	{
 		return A.x * B.x + A.y * B.y;
 	}
-	template<typename T> inline float Vector2<T>::Dot(const Vector2<T>& A) const
+	template<typename T> inline T Vector2<T>::Dot(const Vector2<T>& A) const
 	{
 		return Dot(*this,A);
 	}
 	
-	template<typename T> inline static float Vector2<T>::Cross(const Vector2<T>& A, const Vector2<T>& B)
+	template<typename T> inline static T Vector2<T>::Cross(const Vector2<T>& A, const Vector2<T>& B)
 	{
 		return A.x * B.y - A.y * B.x;
 	}
-	template<typename T> inline float Vector2<T>::Cross(const Vector2<T>& A) const
+	template<typename T> inline T Vector2<T>::Cross(const Vector2<T>& A) const
 	{
 		return Cross(*this,A);
 	}
 	
-	template<typename T> inline float Vector2<T>::LengthSquared() const
+	template<typename T> inline double Vector2<T>::LengthSquared() const
 	{	
 		return Dot(*this,*this);
 	}
-	template<typename T> inline float Vector2<T>::Length() const
+	template<typename T> inline double Vector2<T>::Length() const
 	{	
 		return sqrt(LengthSquared());
 	}
@@ -78,7 +82,7 @@ namespace ege
 		y*=scale.y;
 	}
 
-#pragma region Operators
+//#pragma region Operators
 
 	template<typename T> inline const T& Vector2<T>::operator [](const unsigned int& index) const
 	{
@@ -176,7 +180,7 @@ namespace ege
 	{
 		return Ostr<<"("<<RightVal.x<<","<<RightVal.y<<")";
 	}
-#pragma endregion
+//#pragma endregion
 
 
 }
