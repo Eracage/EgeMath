@@ -12,13 +12,15 @@ namespace ege
 	{
 	public:
 		static const Matrix4 Identity;
-		static const ROWS = 4
+		static const unsigned int ROWS = 4;
+		static const unsigned int COLUMNS = 4;
 		/**
 		Creates Identity Matrix
 		*/
 		Matrix4();
 		Matrix4(const T* FirstElement);
-		Matrix4(const matrix3 mat3);
+		Matrix4(const Matrix3& mat3);
+		Matrix4(const Matrix4& mat4);
 		Matrix4(
 			const Vector4<T>& Row1,
 			const Vector4<T>& Row2,
@@ -31,7 +33,7 @@ namespace ege
 			const T r4c1,const T r4c2,const T r4c3,const T r4c4);
 		~Matrix4();
 
-		T* FirstElement() const;
+		T* ptr() const;
 
 		const Vector4<T>& operator [](const unsigned int& index) const;
 		Vector4<T>& operator [](const unsigned int& index);
@@ -41,11 +43,10 @@ namespace ege
 
 	};
 	
-	Matrix4 operator *(const Matrix4& LeftVal, const Matrix4& RightVal);
-	const Matrix4 operator *=(Matrix4& LeftVal, const Matrix4& RightVal);
+	template<typename T> Matrix4<T> operator *(const Matrix4<T>& LeftVal, const Matrix4<T>& RightVal);
 
-	Vector4<T> operator *(const Vector4<T>& LeftVal, const Matrix4& RightVal);
-	const Vector4<T> operator *=(Vector4<T>& LeftVal, const Matrix4& RightVal);
+	template<typename T> Vector4<T> operator *(const Vector4<T>& LeftVal, const Matrix4<T>& RightVal);
+	template<typename T> const Vector4<T> operator *=(Vector4<T>& LeftVal, const Matrix4<T>& RightVal);
 	
 }
 
