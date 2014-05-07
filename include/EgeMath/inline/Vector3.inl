@@ -1,29 +1,34 @@
 #pragma once
+#include "../Utils.h"
 
 namespace ege
 {
 	template<typename T> inline Vector3<T>::Vector3()
 			: x(T()), y(T()), z(T())
 	{}
-	template<typename T> inline Vector3<T>::Vector3(const T Value)
+	template<typename T> inline Vector3<T>::Vector3(const T& Value)
 		: x(Value), y(Value), z(Value)
 	{}
-	template<typename T> inline Vector3<T>::Vector3(const T X,const T Y,const T Z)
+	template<typename T> inline Vector3<T>::Vector3(const T& X,const T& Y,const T& Z)
 		: x(X), y(Y), z(Z)
 	{}
-	template<typename T> inline Vector3<T>::Vector3(const Vector2<T>& V2, T Z)
+	template<typename T> inline Vector3<T>::Vector3(const Vector2<T>& V2, const T& Z)
 		: x(V2.x), y(V2.y), z(Z)
 	{}
 	template<typename T> inline Vector3<T>::Vector3(const Vector3<T>& V3)
 		: x(V3.x), y(V3.y), z(V3.z)
 	{}
+	template<typename T>
+	template<typename T2> inline Vector3<T>::Vector3(const Vector3<T2>& V3)
+		: x(static_cast<T>(V3.x)), y(static_cast<T>(V3.y)), z(static_cast<T>(V3.z))
+	{}
 	template<typename T> inline Vector3<T>::~Vector3(){}
 	
-	template<typename T> inline static float Vector3<T>::Dot(const Vector3<T>& A, const Vector3<T>& B)
+	template<typename T> inline static T Vector3<T>::Dot(const Vector3<T>& A, const Vector3<T>& B)
 	{
 		return A.x * B.x + A.y * B.y + A.z * B.z;
 	}
-	template<typename T> inline float Vector3<T>::Dot(const Vector3<T>& A) const
+	template<typename T> inline T Vector3<T>::Dot(const Vector3<T>& A) const
 	{
 		return Dot(*this,A);
 	}
@@ -40,25 +45,38 @@ namespace ege
 		return Cross(*this,A);
 	}
 
-	template<typename T> inline float Vector3<T>::LengthSquared() const
-	{	
-		return Dot(*this,*this);
+	template<typename T> inline double Vector3<T>::LengthSquared() const
+	{
+		const double X = static_cast<const double>(x);
+		const double Y = static_cast<const double>(y);
+		const double Z = static_cast<const double>(z);
+		return X*X + Y*Y + Z*Z;
 	}
-	template<typename T> inline float Vector3<T>::Length() const
-	{	
-		return sqrt(LengthSquared());
+	template<typename T> inline double Vector3<T>::Length() const
+	{
+		return std::sqrt(LengthSquared());
+	}
+	
+	template<typename T> inline Vector3<T>& Vector3<T>::Normalize()
+	{
+		return *this = UnitVector();
+	}
+	template<typename T> inline Vector3<T> Vector3<T>::UnitVector() const
+	{
+		const double len = Length();
+		return Vector2<T>(x / len, y / len, z / len);
 	}
 
 //#pragma region Operators
 
 	template<typename T> inline const T& Vector3<T>::operator [](const unsigned int& index) const
 	{
-		assert(index>3);
+		assert(index<COMPONENTS);
 		return (&x)[index];
 	}
 	template<typename T> inline T& Vector3<T>::operator [](const unsigned int& index)
 	{
-		assert(index>3);
+		assert(index<COMPONENTS);
 		return (&x)[index];
 	}
 	
@@ -105,7 +123,7 @@ namespace ege
 	
 	template<typename T> inline bool operator ==(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
 	{
-		return !LeftVal!=RightVal;
+		return !(LeftVal!=RightVal);
 	}
 	template<typename T> inline bool operator !=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
 	{

@@ -1,4 +1,5 @@
 #pragma once
+#include "../Utils.h"
 
 namespace ege
 {
@@ -39,59 +40,70 @@ namespace ege
 	}
 	
 	template<typename T> inline double Vector2<T>::LengthSquared() const
-	{	
-		return Dot(*this,*this);
+	{
+		const double X = static_cast<const double>(x);
+		const double Y = static_cast<const double>(y);
+		return X*X + Y*Y;
 	}
 	template<typename T> inline double Vector2<T>::Length() const
-	{	
-		return sqrt(LengthSquared());
-	}
-
-	template<typename T> inline float Vector2<T>::AngleRadians() const
 	{
-		return atan2(y,x);
-	}
-	template<typename T> inline float Vector2<T>::AngleDegrees() const
-	{
-		return AngleRadians()*180.0f/PI;
+		return std::sqrt(LengthSquared());
 	}
 	
-	template<typename T> inline void Vector2<T>::Transform(const Vector2<T>& position)
+	template<typename T> inline Vector2<T>& Vector2<T>::Normalize()
 	{
-		x += position.x;
-		y += position.y;
+		return *this = UnitVector();
 	}
-	template<typename T> inline void Vector2<T>::RotateDegrees(const float degrees)
+	template<typename T> inline Vector2<T> Vector2<T>::UnitVector() const
+	{
+		const double len = Length();
+		return Vector2<T>(x / len, y / len);
+	}
+
+	template<typename T> inline double Vector2<T>::AngleRadians() const
+	{
+		return std::atan2(y,x);
+	}
+	template<typename T> inline double Vector2<T>::AngleDegrees() const
+	{
+		return AngleRadians()*180.0/PI;
+	}
+	
+	template<typename T> inline Vector2<T>& Vector2<T>::Transform(const Vector2<T>& position)
+	{
+		return *this += position;
+	}
+	template<typename T> inline Vector2<T>& Vector2<T>::RotateDegrees(const float degrees)
 	{
 		RotateRadians(degrees/180.0f*PI);
+		return *this;
 	}
-	template<typename T> inline void Vector2<T>::RotateRadians(const float radians)
+	template<typename T> inline Vector2<T>& Vector2<T>::RotateRadians(const float radians)
 	{
-		if (radians == 0)
-			return;
-
-		const float cosA = cos(radians);
-		const float sinA = sin(radians);
+		const float cosA = std::cos(radians);
+		const float sinA = std::sin(radians);
 		const float oldX = x;
 		x = oldX*cosA-y*sinA;
 		y = oldX*sinA+y*cosA;
+		return *this;
 	}
-	template<typename T> inline void Vector2<T>::Scale(const Vector2<T>& scale)
+	template<typename T> inline Vector2<T>& Vector2<T>::Scale(const Vector2<T>& scale)
 	{
 		x*=scale.x;
 		y*=scale.y;
+		return *this;
 	}
 
 //#pragma region Operators
 
 	template<typename T> inline const T& Vector2<T>::operator [](const unsigned int& index) const
 	{
-		assert(index>2);
+		assert(index<COMPONENTS);
 		return (&x)[index];
 	}
 	template<typename T> inline T& Vector2<T>::operator [](const unsigned int& index)
 	{
-		assert(index>2);
+		assert(index<COMPONENTS);
 		return (&x)[index];
 	}
 	

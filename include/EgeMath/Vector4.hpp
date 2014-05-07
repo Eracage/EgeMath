@@ -8,20 +8,44 @@ namespace ege
 	template<typename T>
 	class Vector4
 	{
+		static const unsigned int COMPONENTS = 4;
 	public:
 		Vector4();
-		Vector4(const T Value);
-		Vector4(const T X, const T Y, const T Z, const T W);
-		Vector4(const Vector2<T>& V2, const T Z, const T W);
-		Vector4(const Vector3<T>& V3, const T W);
+		explicit Vector4(const T& Value);
+		Vector4(const T& X, const T& Y, const T& Z, const T& W);
+		Vector4(const Vector2<T>& V2, const T& Z, const T& W);
+		Vector4(const Vector3<T>& V3, const T& W);
 		Vector4(const Vector4<T>& V4);
+		template<typename T2>
+		Vector4(const Vector4<T2>& V4);
 		~Vector4();
 		
-		static double Dot(const Vector4<T>& A, const Vector4<T>& B);
-		double Dot(const Vector4<T>& A) const;
+		/*
+		Returns the dot product of 2 different vectors
+		*/
+		static T Dot(const Vector4<T>& A, const Vector4<T>& B);
+		/*
+		Returns the dot product of 2 different vectors
+		*/
+		T Dot(const Vector4<T>& A) const;
 		
+		/*
+		Returns the length of the vector squared, more optimized than Length() function
+		*/
 		double LengthSquared() const;
+		/*
+		Returns the length of the vector, consider using LengthSquared() for optimization
+		*/
 		double Length() const;
+
+		/*
+		Normalizes the vector and returns the reference
+		*/
+		Vector4<T>& Normalize();
+		/*
+		Returns normalized version of the vector, does not modify the vector
+		*/
+		Vector4<T> UnitVector() const;
 		
 		union{ T x, r;};
 		union{ T y, g;};

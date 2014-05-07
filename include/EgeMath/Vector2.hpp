@@ -5,13 +5,11 @@
 
 namespace ege
 {
-	const float PI = 3.14159265358979323846264f;
-
 	template<typename T>
 	class Vector2
 	{
+		static const unsigned int COMPONENTS = 2;
 	public:
-
 		Vector2();
 		explicit Vector2(const T& Value);
 		Vector2(const T& X, const T& Y);
@@ -20,43 +18,67 @@ namespace ege
 		Vector2(const Vector2<T2>& V2);
 		~Vector2();
 
+		/*
+		Returns the dot product of 2 different vectors
+		*/
 		static T Dot(const Vector2<T>& A, const Vector2<T>& B);
+		/*
+		Returns the dot product of 2 different vectors
+		*/
 		T Dot(const Vector2<T>& A) const;
-
+		
+		/*
+		Returns the cross product of 2 different vectors
+		*/
 		static T Cross(const Vector2<T>& A, const Vector2<T>& B);
+		/*
+		Returns the cross product of 2 different vectors
+		*/
 		T Cross(const Vector2<T>& A) const;
 
+		/*
+		Returns the length of the vector squared, more optimized than Length() function
+		*/
 		double LengthSquared() const;
+		/*
+		Returns the length of the vector, consider using LengthSquared() for optimization
+		*/
 		double Length() const;
 
+		/*
+		Normalizes the vector and returns the reference
+		*/
 		Vector2<T>& Normalize();
+		/*
+		Returns normalized version of the vector, does not modify the vector
+		*/
 		Vector2<T> UnitVector() const;
 
 		/*
 		Returns the angle of the vector in radians ranging from -PI to PI
 		*/
-		float AngleRadians() const;
+		double AngleRadians() const;
 		/*
 		Returns the angle of the vector in degrees ranging from -180 to 180
 		*/
-		float AngleDegrees() const;
+		double AngleDegrees() const;
 
 		/*
 		Transforms the current vector by given position vector.
 		*/
-		void Transform(const Vector2<T>& Position);
+		Vector2<T>& Transform(const Vector2<T>& Position);
 		/*
 		Rotates the current vector by given amount of degrees.
 		*/
-		void RotateDegrees(const float Degrees);
+		Vector2<T>& RotateDegrees(const float Degrees);
 		/*
 		Rotates the current vector by given amount of radians.
 		*/
-		void RotateRadians(const float Radians);
+		Vector2<T>& RotateRadians(const float Radians);
 		/*
 		Scales the current vector by given scale vector.
 		*/
-		void Scale(const Vector2<T>& Scale);
+		Vector2<T>& Scale(const Vector2<T>& Scale);
 
 		union{ T x, w;};
 		union{ T y, h;};
