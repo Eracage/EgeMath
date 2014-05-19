@@ -26,16 +26,16 @@ namespace ege
 	{}
 	template<typename T> inline Vector4<T>::~Vector4(){}
 	
-	template<typename T> inline static T Vector4<T>::Dot(const Vector4<T>& A, const Vector4<T>& B)
+	template<typename T> inline T Vector4<T>::dot(const Vector4<T>& A, const Vector4<T>& B)
 	{
 		return A.x * B.x + A.y * B.y + A.z * B.z + A.w * B.w;
 	}
-	template<typename T> inline T Vector4<T>::Dot(const Vector4<T>& A) const
+	template<typename T> inline T Vector4<T>::dot(const Vector4<T>& A) const
 	{
-		return Dot(*this,A);
+		return dot(*this,A);
 	}
 
-	template<typename T> inline double Vector4<T>::LengthSquared() const
+	template<typename T> inline double Vector4<T>::lengthSquared() const
 	{	
 		const double X = static_cast<const double>(x);
 		const double Y = static_cast<const double>(y);
@@ -43,19 +43,23 @@ namespace ege
 		const double W = static_cast<const double>(w);
 		return X*X + Y*Y + Z*Z + W*W;
 	}
-	template<typename T> inline double Vector4<T>::Length() const
+	template<typename T> inline double Vector4<T>::length() const
 	{	
-		return std::sqrt(LengthSquared());
+		return std::sqrt(lengthSquared());
 	}
 	
 	template<typename T> inline Vector4<T>& Vector4<T>::Normalize()
 	{
-		return *this = UnitVector();
+		return *this = unitVector();
 	}
-	template<typename T> inline Vector4<T> Vector4<T>::UnitVector() const
+	template<typename T> inline Vector4<T> Vector4<T>::unitVector() const
 	{
-		const double len = Length();
-		return Vector2<T>(x / len, y / len, z / len, w / len);
+		const double len = length();
+		return Vector4<T>(
+			static_cast<T>(x / len), 
+			static_cast<T>(y / len), 
+			static_cast<T>(z / len), 
+			static_cast<T>(w / len));
 	}
 
 //#pragma region Operators
@@ -117,29 +121,33 @@ namespace ege
 	
 	template<typename T> inline bool operator ==(const Vector4<T>& LeftVal,const Vector4<T>& RightVal)
 	{
-		return !(LeftVal!=RightVal);
+		return (
+			equals(LeftVal.x, RightVal.x) && 
+			equals(LeftVal.y, RightVal.y) && 
+			equals(LeftVal.z, RightVal.z) && 
+			equals(LeftVal.w, RightVal.w));
 	}
 	template<typename T> inline bool operator !=(const Vector4<T>& LeftVal,const Vector4<T>& RightVal)
 	{
-		return (LeftVal.x != RightVal.x || LeftVal.y != RightVal.y || LeftVal.z != RightVal.z || LeftVal.w != RightVal.w);
+		return !(LeftVal == RightVal);
 	}
 	
 	template<typename T> inline bool operator <(const Vector4<T>& LeftVal,const Vector4<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() < RightVal.LengthSquared();
+		return LeftVal.lengthSquared() < RightVal.lengthSquared();
 	}
 	template<typename T> inline bool operator <=(const Vector4<T>& LeftVal,const Vector4<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() <= RightVal.LengthSquared();
+		return LeftVal.lengthSquared() <= RightVal.lengthSquared();
 	}
 	
 	template<typename T> inline bool operator >(const Vector4<T>& LeftVal,const Vector4<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() > RightVal.LengthSquared();
+		return RightVal < LeftVal;
 	}
 	template<typename T> inline bool operator >=(const Vector4<T>& LeftVal,const Vector4<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() >= RightVal.LengthSquared();
+		return RightVal <= LeftVal;
 	}
 	
 	template<typename T> inline Vector4<T> operator *(const Vector4<T>& LeftVal, const float RightVal)

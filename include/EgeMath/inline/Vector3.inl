@@ -1,5 +1,4 @@
 #pragma once
-#include "../Utils.h"
 
 namespace ege
 {
@@ -24,47 +23,50 @@ namespace ege
 	{}
 	template<typename T> inline Vector3<T>::~Vector3(){}
 	
-	template<typename T> inline static T Vector3<T>::Dot(const Vector3<T>& A, const Vector3<T>& B)
+	template<typename T> inline T Vector3<T>::dot(const Vector3<T>& A, const Vector3<T>& B)
 	{
 		return A.x * B.x + A.y * B.y + A.z * B.z;
 	}
-	template<typename T> inline T Vector3<T>::Dot(const Vector3<T>& A) const
+	template<typename T> inline T Vector3<T>::dot(const Vector3<T>& A) const
 	{
-		return Dot(*this,A);
+		return dot(*this,A);
 	}
 	
-	template<typename T> inline static Vector3<T> Vector3<T>::Cross(const Vector3<T>& A, const Vector3<T>& B)
+	template<typename T> inline Vector3<T> Vector3<T>::cross(const Vector3<T>& A, const Vector3<T>& B)
 	{
 		return Vector3<T>(
 			A.y * B.z - A.z * B.y,
 			A.z * B.x - A.x * B.z,
 			A.x * B.y - A.y * B.x);
 	}
-	template<typename T> inline Vector3<T> Vector3<T>::Cross(const Vector3<T>& A) const
+	template<typename T> inline Vector3<T> Vector3<T>::cross(const Vector3<T>& A) const
 	{
-		return Cross(*this,A);
+		return cross(*this,A);
 	}
 
-	template<typename T> inline double Vector3<T>::LengthSquared() const
+	template<typename T> inline double Vector3<T>::lengthSquared() const
 	{
 		const double X = static_cast<const double>(x);
 		const double Y = static_cast<const double>(y);
 		const double Z = static_cast<const double>(z);
 		return X*X + Y*Y + Z*Z;
 	}
-	template<typename T> inline double Vector3<T>::Length() const
+	template<typename T> inline double Vector3<T>::length() const
 	{
-		return std::sqrt(LengthSquared());
+		return std::sqrt(lengthSquared());
 	}
 	
 	template<typename T> inline Vector3<T>& Vector3<T>::Normalize()
 	{
-		return *this = UnitVector();
+		return *this = unitVector();
 	}
-	template<typename T> inline Vector3<T> Vector3<T>::UnitVector() const
+	template<typename T> inline Vector3<T> Vector3<T>::unitVector() const
 	{
-		const double len = Length();
-		return Vector2<T>(x / len, y / len, z / len);
+		const double len = length();
+		return Vector3<T>(
+			static_cast<T>(x / len), 
+			static_cast<T>(y / len), 
+			static_cast<T>(z / len));
 	}
 
 //#pragma region Operators
@@ -123,29 +125,32 @@ namespace ege
 	
 	template<typename T> inline bool operator ==(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
 	{
-		return !(LeftVal!=RightVal);
+		return (
+			equals(LeftVal.x, RightVal.x) && 
+			equals(LeftVal.y, RightVal.y) && 
+			equals(LeftVal.z, RightVal.z));
 	}
 	template<typename T> inline bool operator !=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
 	{
-		return (LeftVal.x != RightVal.x || LeftVal.y != RightVal.y || LeftVal.z != RightVal.z);
+		return !(LeftVal == RightVal);
 	}
 	
 	template<typename T> inline bool operator <(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() < RightVal.LengthSquared();
+		return LeftVal.lengthSquared() < RightVal.lengthSquared();
 	}
 	template<typename T> inline bool operator <=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() <= RightVal.LengthSquared();
+		return LeftVal.lengthSquared() <= RightVal.lengthSquared();
 	}
 	
 	template<typename T> inline bool operator >(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() > RightVal.LengthSquared();
+		return RightVal < LeftVal;
 	}
 	template<typename T> inline bool operator >=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() >= RightVal.LengthSquared();
+		return RightVal <= LeftVal;
 	}
 	
 	template<typename T> inline Vector3<T> operator *(const Vector3<T>& LeftVal, const float RightVal)

@@ -1,5 +1,4 @@
 #pragma once
-#include "../Utils.h"
 
 namespace ege
 {
@@ -21,52 +20,54 @@ namespace ege
 	{}
 	template<typename T> inline Vector2<T>::~Vector2(){}
 	
-	template<typename T> inline static T Vector2<T>::Dot(const Vector2<T>& A, const Vector2<T>& B)
+	template<typename T> inline T Vector2<T>::dot(const Vector2<T>& A, const Vector2<T>& B)
 	{
 		return A.x * B.x + A.y * B.y;
 	}
-	template<typename T> inline T Vector2<T>::Dot(const Vector2<T>& A) const
+	template<typename T> inline T Vector2<T>::dot(const Vector2<T>& A) const
 	{
-		return Dot(*this,A);
+		return dot(*this,A);
 	}
 	
-	template<typename T> inline static T Vector2<T>::Cross(const Vector2<T>& A, const Vector2<T>& B)
+	template<typename T> inline T Vector2<T>::cross(const Vector2<T>& A, const Vector2<T>& B)
 	{
 		return A.x * B.y - A.y * B.x;
 	}
-	template<typename T> inline T Vector2<T>::Cross(const Vector2<T>& A) const
+	template<typename T> inline T Vector2<T>::cross(const Vector2<T>& A) const
 	{
-		return Cross(*this,A);
+		return cross(*this,A);
 	}
 	
-	template<typename T> inline double Vector2<T>::LengthSquared() const
+	template<typename T> inline double Vector2<T>::lengthSquared() const
 	{
 		const double X = static_cast<const double>(x);
 		const double Y = static_cast<const double>(y);
 		return X*X + Y*Y;
 	}
-	template<typename T> inline double Vector2<T>::Length() const
+	template<typename T> inline double Vector2<T>::length() const
 	{
-		return std::sqrt(LengthSquared());
+		return std::sqrt(lengthSquared());
 	}
 	
 	template<typename T> inline Vector2<T>& Vector2<T>::Normalize()
 	{
-		return *this = UnitVector();
+		return *this = unitVector();
 	}
-	template<typename T> inline Vector2<T> Vector2<T>::UnitVector() const
+	template<typename T> inline Vector2<T> Vector2<T>::unitVector() const
 	{
-		const double len = Length();
-		return Vector2<T>(x / len, y / len);
+		const double len = length();
+		return Vector2<T>(
+			static_cast<T>(x / len), 
+			static_cast<T>(y / len));
 	}
 
-	template<typename T> inline double Vector2<T>::AngleRadians() const
+	template<typename T> inline double Vector2<T>::angleRadians() const
 	{
 		return std::atan2(y,x);
 	}
-	template<typename T> inline double Vector2<T>::AngleDegrees() const
+	template<typename T> inline double Vector2<T>::angleDegrees() const
 	{
-		return AngleRadians()*180.0/PI;
+		return angleRadians()*180.0/PI;
 	}
 	
 	template<typename T> inline Vector2<T>& Vector2<T>::Transform(const Vector2<T>& position)
@@ -147,29 +148,31 @@ namespace ege
 	
 	template<typename T> inline bool operator ==(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
 	{
-		return !(LeftVal!=RightVal);
+		return (
+			equals(LeftVal.x, RightVal.x) && 
+			equals(LeftVal.y, RightVal.y));
 	}
 	template<typename T> inline bool operator !=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
 	{
-		return (LeftVal.x != RightVal.x || LeftVal.y != RightVal.y);
+		return !(LeftVal == RightVal);
 	}
 	
 	template<typename T> inline bool operator <(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() < RightVal.LengthSquared();
+		return LeftVal.lengthSquared() < RightVal.lengthSquared();
 	}
 	template<typename T> inline bool operator <=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() <= RightVal.LengthSquared();
+		return LeftVal.lengthSquared() <= RightVal.lengthSquared();
 	}
 	
 	template<typename T> inline bool operator >(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() > RightVal.LengthSquared();
+		return RightVal < LeftVal;
 	}
 	template<typename T> inline bool operator >=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
 	{
-		return LeftVal.LengthSquared() >= RightVal.LengthSquared();
+		return RightVal <= LeftVal;
 	}
 	
 	template<typename T> inline Vector2<T> operator *(const Vector2<T>& LeftVal, const float RightVal)

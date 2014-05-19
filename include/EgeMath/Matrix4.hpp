@@ -11,7 +11,7 @@ namespace ege
 	class Matrix4
 	{
 	public:
-		static const Matrix4 Identity;
+		static const Matrix4<T> Identity;
 		static const unsigned int ROWS = 4;
 		static const unsigned int COLUMNS = 4;
 		/**
@@ -19,8 +19,11 @@ namespace ege
 		*/
 		Matrix4();
 		Matrix4(const T* FirstElement);
-		Matrix4(const Matrix3& mat3);
-		Matrix4(const Matrix4& mat4);
+		explicit Matrix4(const Matrix2<T>& mat2);
+		explicit Matrix4(const Matrix3<T>& mat3);
+		Matrix4(const Matrix4<T>& mat4);
+		template<typename T2>
+		Matrix4(const Matrix4<T2>& mat4);
 		Matrix4(
 			const Vector4<T>& Row1,
 			const Vector4<T>& Row2,
@@ -32,6 +35,18 @@ namespace ege
 			const T r3c1,const T r3c2,const T r3c3,const T r3c4,
 			const T r4c1,const T r4c2,const T r4c3,const T r4c4);
 		~Matrix4();
+
+		T determinant() const;
+
+		Matrix4<T>& Transpose();
+		Matrix4<T> transposedMatrix() const;
+
+		Matrix4<T> cofactorsMatrix() const;
+
+		Matrix4<T>& Inverse();
+		Matrix4<T> inversedMatrix() const;
+
+		Matrix3<T> getMatrix3(const unsigned int rowToRemove = 3, const unsigned int columnToRemove = 3) const;
 
 		T* ptr() const;
 

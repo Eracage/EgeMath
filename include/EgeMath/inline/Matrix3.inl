@@ -49,7 +49,7 @@ namespace ege
 			return LeftVal;
 		}
 	
-		vector3 operator *(const vector3& RV, const Matrix3& LM)
+		Vector3 operator *(const Vector3& RV, const Matrix3& LM)
 		{
 			const float L[3][3] = 
 			{
@@ -70,13 +70,13 @@ namespace ege
 				RV[2]
 			};
 
-			return vector3(
+			return Vector3(
 				L[0][0] * R[0] + L[0][1] * R[1] + L[0][2] * R[2],
 				L[1][0] * R[0] + L[1][1] * R[1] + L[1][2] * R[2],
 				L[2][0] * R[0] + L[2][1] * R[1] + L[2][2] * R[2]
 				);
 		}
-		const vector3 operator *=(vector3& LeftVal, const Matrix3& RightVal)
+		const Vector3 operator *=(Vector3& LeftVal, const Matrix3& RightVal)
 		{
 			LeftVal = LeftVal * RightVal;
 			return LeftVal;
