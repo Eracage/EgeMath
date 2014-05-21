@@ -19,7 +19,10 @@ namespace ege
 		template<typename T2>
 		Vector4(const Vector4<T2>& V4);
 		~Vector4();
-		
+
+		Vector2<T> xy() const;
+		Vector3<T> xyz() const;
+
 		/*
 		Returns the dot product of 2 different vectors
 		*/
@@ -54,35 +57,37 @@ namespace ege
 
 		const T& operator [](const unsigned int& index) const;
 		T& operator [](const unsigned int& index);
+
+		bool operator ==(const Vector4<T>& RightVal) const;
+		bool operator !=(const Vector4<T>& RightVal) const;
+
+		bool operator <(const Vector4<T>& RightVal) const;
+		bool operator <=(const Vector4<T>& RightVal) const;
+
+		bool operator >(const Vector4<T>& RightVal) const;
+		bool operator >=(const Vector4<T>& RightVal) const;
+
+		Vector4<T>& operator =(const Vector4<T>& RightVal);
+
+		Vector4<T>& operator +=(const Vector4<T>& RightVal);
+		Vector4<T>& operator -=(const Vector4<T>& RightVal);
+
+		Vector4<T>& operator /=(const T& RightVal);
+		Vector4<T>& operator *=(const T& RightVal);
+
+		Vector4<T> operator -() const;
+
+		Vector4<T> operator +(const Vector4<T>& RightVal) const;
+		Vector4<T> operator -(const Vector4<T>& RightVal) const;
+
+		Vector4<T> operator /(const T& RightVal) const;
+		Vector4<T> operator *(const T& RightVal) const;
 	};
 
-	template<typename T> Vector4<T> operator -(const Vector4<T>& RightVal);
-	
-	template<typename T> Vector4<T> operator +(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	template<typename T> Vector4<T> operator -(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	
-	template<typename T> const Vector4<T>& operator +=(Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	template<typename T> const Vector4<T>& operator -=(Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	
-	template<typename T> Vector4<T> operator /(const Vector4<T>& LeftVal,const T& RightVal);
-	template<typename T> const Vector4<T>& operator /=(Vector4<T>& LeftVal,const T& RightVal);
-	
-	template<typename T> bool operator ==(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	template<typename T> bool operator !=(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	
-	template<typename T> bool operator <(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	template<typename T> bool operator <=(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	
-	template<typename T> bool operator >(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	template<typename T> bool operator >=(const Vector4<T>& LeftVal,const Vector4<T>& RightVal);
-	
-	template<typename T> Vector4<T> operator *(const Vector4<T>& LeftVal, const T& RightVal);
 	template<typename T> Vector4<T> operator *(const T& LeftVal, const Vector4<T>& RightVal);
-	
-	template<typename T> const Vector4<T>& operator *=(Vector4<T>& LeftVal, const T& RightVal);
-	
+
 	template<typename T> std::ostream& operator <<(std::ostream& Ostr, const Vector4<T>& RightVal);
-	
+
 	typedef Vector4<float>          Vec4;
 	typedef Vector4<double>         Vec4d;
 	typedef Vector4<int>            Vec4i;

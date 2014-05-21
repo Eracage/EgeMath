@@ -1,5 +1,3 @@
-#pragma once
-
 namespace ege
 {
 	template<typename T> inline Vector3<T>::Vector3()
@@ -22,7 +20,12 @@ namespace ege
 		: x(static_cast<T>(V3.x)), y(static_cast<T>(V3.y)), z(static_cast<T>(V3.z))
 	{}
 	template<typename T> inline Vector3<T>::~Vector3(){}
-	
+
+	template<typename T> inline Vector2<T> Vector3<T>::xy() const
+	{
+		return Vector2<T>(x,y);
+	}
+
 	template<typename T> inline T Vector3<T>::dot(const Vector3<T>& A, const Vector3<T>& B)
 	{
 		return A.x * B.x + A.y * B.y + A.z * B.z;
@@ -81,93 +84,101 @@ namespace ege
 		assert(index<COMPONENTS);
 		return (&x)[index];
 	}
-	
-	template<typename T> inline Vector3<T> operator -(const Vector3<T>& RightVal)
-	{
-		return Vector3<T>(-RightVal.x, -RightVal.y, -RightVal.z);
-	}
-	
-	template<typename T> inline Vector3<T> operator +(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
-	{
-		return Vector3<T>(LeftVal.x+RightVal.x,LeftVal.y+RightVal.y,LeftVal.z+RightVal.z);
-	}
-	template<typename T> inline Vector3<T> operator -(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
-	{
-		return Vector3<T>(LeftVal.x-RightVal.x,LeftVal.y-RightVal.y,LeftVal.z-RightVal.z);
-	}
-	
-	template<typename T> inline const Vector3<T>& operator +=(Vector3<T>& LeftVal,const Vector3<T>& RightVal)
-	{
-		LeftVal.x += RightVal.x;
-		LeftVal.y += RightVal.y;
-		LeftVal.z += RightVal.z;
-		return LeftVal;
-	}
-	template<typename T> inline const Vector3<T>& operator -=(Vector3<T>& LeftVal,const Vector3<T>& RightVal)
-	{
-		LeftVal.x -= RightVal.x;
-		LeftVal.y -= RightVal.y;
-		LeftVal.z -= RightVal.z;
-		return LeftVal;
-	}
-	
-	template<typename T> inline Vector3<T> operator /(const Vector3<T>& LeftVal, const float RightVal)
-	{
-		return Vector3<T>(LeftVal.x / RightVal,LeftVal.y / RightVal,LeftVal.z / RightVal);
-	}
-	template<typename T> inline const Vector3<T>& operator /=(Vector3<T>& LeftVal, const float RightVal)
-	{
-		LeftVal.x /= RightVal;
-		LeftVal.y /= RightVal;
-		LeftVal.z /= RightVal;
-		return LeftVal;
-	}
-	
-	template<typename T> inline bool operator ==(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
+
+	template<typename T> inline bool Vector3<T>::operator ==(const Vector3<T>& RightVal) const
 	{
 		return (
-			equals(LeftVal.x, RightVal.x) && 
-			equals(LeftVal.y, RightVal.y) && 
-			equals(LeftVal.z, RightVal.z));
+			equals(x, RightVal.x) && 
+			equals(y, RightVal.y) && 
+			equals(z, RightVal.z));
 	}
-	template<typename T> inline bool operator !=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
+	template<typename T> inline bool Vector3<T>::operator !=(const Vector3<T>& RightVal) const
 	{
-		return !(LeftVal == RightVal);
-	}
-	
-	template<typename T> inline bool operator <(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
-	{
-		return LeftVal.lengthSquared() < RightVal.lengthSquared();
-	}
-	template<typename T> inline bool operator <=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
-	{
-		return LeftVal.lengthSquared() <= RightVal.lengthSquared();
-	}
-	
-	template<typename T> inline bool operator >(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
-	{
-		return RightVal < LeftVal;
-	}
-	template<typename T> inline bool operator >=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal)
-	{
-		return RightVal <= LeftVal;
-	}
-	
-	template<typename T> inline Vector3<T> operator *(const Vector3<T>& LeftVal, const float RightVal)
-	{
-		return Vector3<T>(LeftVal.x * RightVal,LeftVal.y * RightVal,LeftVal.z * RightVal);
-	}
-	template<typename T> inline Vector3<T> operator *(const float LeftVal, const Vector3<T>& RightVal)
-	{
-		return RightVal*LeftVal;
+		return !((*this) == RightVal);
 	}
 
-	template<typename T> inline const Vector3<T>& operator *=(Vector3<T>& LeftVal,const float RightVal)
+	template<typename T> inline bool Vector3<T>::operator <(const Vector3<T>& RightVal) const
 	{
-		LeftVal.x *= RightVal;
-		LeftVal.y *= RightVal;
-		LeftVal.z *= RightVal;
-		return LeftVal;
+		return lengthSquared() < RightVal.lengthSquared();
+	}
+	template<typename T> inline bool Vector3<T>::operator <=(const Vector3<T>& RightVal) const
+	{
+		return lengthSquared() <= RightVal.lengthSquared();
+	}
+
+	template<typename T> inline bool Vector3<T>::operator >(const Vector3<T>& RightVal) const
+	{
+		return RightVal < (*this);
+	}
+	template<typename T> inline bool Vector3<T>::operator >=(const Vector3<T>& RightVal) const
+	{
+		return RightVal <= (*this);
+	}
+
+	template<typename T> inline Vector3<T>& Vector3<T>::operator =(const Vector3<T>& RightVal)
+	{
+		x = RightVal.x;
+		y = RightVal.y;
+		z = RightVal.z;
+		return (*this);
+	}
+
+	template<typename T> inline Vector3<T>& Vector3<T>::operator +=(const Vector3<T>& RightVal)
+	{
+		x += RightVal.x;
+		y += RightVal.y;
+		z += RightVal.z;
+		return (*this);
+	}
+	template<typename T> inline Vector3<T>& Vector3<T>::operator -=(const Vector3<T>& RightVal)
+	{
+		x -= RightVal.x;
+		y -= RightVal.y;
+		z -= RightVal.z;
+		return (*this);
+	}
+
+	template<typename T> inline Vector3<T>& Vector3<T>::operator /=(const T& RightVal)
+	{
+		x /= RightVal;
+		y /= RightVal;
+		z /= RightVal;
+		return (*this);
+	}
+	template<typename T> inline Vector3<T>& Vector3<T>::operator *=(const T& RightVal)
+	{
+		x *= RightVal;
+		y *= RightVal;
+		z *= RightVal;
+		return (*this);
+	}
+
+	template<typename T> inline Vector3<T> Vector3<T>::operator -() const
+	{
+		return Vector3<T>(-x, -y, -z);
+	}
+
+	template<typename T> inline Vector3<T> Vector3<T>::operator +(const Vector3<T>& RightVal) const
+	{
+		return Vector3<T>(x+RightVal.x,y+RightVal.y,z+RightVal.z);
+	}
+	template<typename T> inline Vector3<T> Vector3<T>::operator -(const Vector3<T>& RightVal) const
+	{
+		return Vector3<T>(x-RightVal.x,y-RightVal.y,z-RightVal.z);
+	}
+
+	template<typename T> inline Vector3<T> Vector3<T>::operator /(const T& RightVal) const
+	{
+		return Vector3<T>(x / RightVal,y / RightVal,z / RightVal);
+	}
+	template<typename T> inline Vector3<T> Vector3<T>::operator *(const T& RightVal) const
+	{
+		return Vector3<T>(x * RightVal,y * RightVal,z * RightVal);
+	}
+
+	template<typename T> inline Vector3<T> operator *(const T& LeftVal, const Vector3<T>& RightVal)
+	{
+		return RightVal*LeftVal;
 	}
 
 	template<typename T> inline std::ostream& operator <<(std::ostream& Ostr, const Vector3<T>& RightVal)

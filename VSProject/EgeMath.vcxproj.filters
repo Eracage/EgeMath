@@ -49,6 +49,9 @@
     <ClInclude Include="..\include\EgeMath\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\EgeMath\Matrix2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\include\EgeMath\inline\Matrix3.inl">
@@ -67,6 +70,9 @@
       <Filter>Inline Files</Filter>
     </None>
     <None Include="..\include\EgeMath\inline\Vector4.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="..\include\EgeMath\inline\Matrix2.inl">
       <Filter>Inline Files</Filter>
     </None>
   </ItemGroup>

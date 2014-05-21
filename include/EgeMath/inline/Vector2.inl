@@ -1,9 +1,7 @@
-#pragma once
-
 namespace ege
 {
 	template<typename T> inline Vector2<T>::Vector2()
-			: x(T()), y(T())
+		: x(T()), y(T())
 	{}
 	template<typename T> inline Vector2<T>::Vector2(const T& Value)
 		: x(Value), y(Value)
@@ -31,7 +29,7 @@ namespace ege
 	
 	template<typename T> inline T Vector2<T>::cross(const Vector2<T>& A, const Vector2<T>& B)
 	{
-		return A.x * B.y - A.y * B.x;
+		return (A.x * B.y - A.y * B.x);
 	}
 	template<typename T> inline T Vector2<T>::cross(const Vector2<T>& A) const
 	{
@@ -108,89 +106,97 @@ namespace ege
 		return (&x)[index];
 	}
 	
-	template<typename T> inline Vector2<T> operator -(const Vector2<T>& RightVal)
-	{
-		return Vector2<T>(-RightVal.x, -RightVal.y);
-	}
-	
-	template<typename T> inline Vector2<T> operator +(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
-	{
-		return Vector2<T>(LeftVal.x+RightVal.x,LeftVal.y+RightVal.y);
-	}
-	template<typename T> inline Vector2<T> operator -(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
-	{
-		return Vector2<T>(LeftVal.x-RightVal.x,LeftVal.y-RightVal.y);
-	}
-	
-	template<typename T> inline const Vector2<T>& operator +=(Vector2<T>& LeftVal,const Vector2<T>& RightVal)
-	{
-		LeftVal.x += RightVal.x;
-		LeftVal.y += RightVal.y;
-		return LeftVal;
-	}
-	template<typename T> inline const Vector2<T>& operator -=(Vector2<T>& LeftVal,const Vector2<T>& RightVal)
-	{
-		LeftVal.x -= RightVal.x;
-		LeftVal.y -= RightVal.y;
-		return LeftVal;
-	}
-	
-	template<typename T> inline Vector2<T> operator /(const Vector2<T>& LeftVal, const float RightVal)
-	{
-		return Vector2<T>(LeftVal.x / RightVal,LeftVal.y / RightVal);
-	}
-	template<typename T> inline const Vector2<T>& operator /=(Vector2<T>& LeftVal, const float RightVal)
-	{
-		LeftVal.x /= RightVal;
-		LeftVal.y /= RightVal;
-		return LeftVal;
-	}
-	
-	template<typename T> inline bool operator ==(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
+	template<typename T> inline bool Vector2<T>::operator ==(const Vector2<T>& RightVal) const
 	{
 		return (
-			equals(LeftVal.x, RightVal.x) && 
-			equals(LeftVal.y, RightVal.y));
+			equals(x, RightVal.x) && 
+			equals(y, RightVal.y));
 	}
-	template<typename T> inline bool operator !=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
+	template<typename T> inline bool Vector2<T>::operator !=(const Vector2<T>& RightVal) const
 	{
-		return !(LeftVal == RightVal);
+		return !((*this) == RightVal);
 	}
 	
-	template<typename T> inline bool operator <(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
+	template<typename T> inline bool Vector2<T>::operator <(const Vector2<T>& RightVal) const
 	{
-		return LeftVal.lengthSquared() < RightVal.lengthSquared();
+		return lengthSquared() < RightVal.lengthSquared();
 	}
-	template<typename T> inline bool operator <=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
+	template<typename T> inline bool Vector2<T>::operator <=(const Vector2<T>& RightVal) const
 	{
-		return LeftVal.lengthSquared() <= RightVal.lengthSquared();
-	}
-	
-	template<typename T> inline bool operator >(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
-	{
-		return RightVal < LeftVal;
-	}
-	template<typename T> inline bool operator >=(const Vector2<T>& LeftVal,const Vector2<T>& RightVal)
-	{
-		return RightVal <= LeftVal;
+		return lengthSquared() <= RightVal.lengthSquared();
 	}
 	
-	template<typename T> inline Vector2<T> operator *(const Vector2<T>& LeftVal, const float RightVal)
+	template<typename T> inline bool Vector2<T>::operator >(const Vector2<T>& RightVal) const
 	{
-		return Vector2<T>(LeftVal.x * RightVal,LeftVal.y * RightVal);
+		return RightVal < (*this);
 	}
-	template<typename T> inline Vector2<T> operator *(const float LeftVal, const Vector2<T>& RightVal)
+	template<typename T> inline bool Vector2<T>::operator >=(const Vector2<T>& RightVal) const
+	{
+		return RightVal <= (*this);
+	}
+	
+	template<typename T> inline Vector2<T>& Vector2<T>::operator =(const Vector2<T>& RightVal)
+	{
+		x = RightVal.x;
+		y = RightVal.y;
+		return (*this);
+	}
+
+	template<typename T> inline Vector2<T>& Vector2<T>::operator +=(const Vector2<T>& RightVal)
+	{
+		x += RightVal.x;
+		y += RightVal.y;
+		return (*this);
+	}
+	template<typename T> inline Vector2<T>& Vector2<T>::operator -=(const Vector2<T>& RightVal)
+	{
+		x -= RightVal.x;
+		y -= RightVal.y;
+		return (*this);
+	}
+	
+	template<typename T> inline Vector2<T>& Vector2<T>::operator /=(const T& RightVal)
+	{
+		x /= RightVal;
+		y /= RightVal;
+		return (*this);
+	}
+	template<typename T> inline Vector2<T>& Vector2<T>::operator *=(const T& RightVal)
+	{
+		x *= RightVal;
+		y *= RightVal;
+		return (*this);
+	}
+
+	template<typename T> inline Vector2<T> Vector2<T>::operator -() const
+	{
+		return Vector2<T>(-x, -y);
+	}
+	
+	template<typename T> inline Vector2<T> Vector2<T>::operator +(const Vector2<T>& RightVal) const
+	{
+		return Vector2<T>(x+RightVal.x,y+RightVal.y);
+	}
+	template<typename T> inline Vector2<T> Vector2<T>::operator -(const Vector2<T>& RightVal) const
+	{
+		return Vector2<T>(x-RightVal.x,y-RightVal.y);
+	}
+
+	template<typename T> inline Vector2<T> Vector2<T>::operator /(const T& RightVal) const
+	{
+		return Vector2<T>(x / RightVal,y / RightVal);
+	}
+	template<typename T> inline Vector2<T> Vector2<T>::operator *(const T& RightVal) const
+	{
+		return Vector2<T>(x * RightVal,y * RightVal);
+	}
+
+	template<typename T> inline Vector2<T> operator *(const T& LeftVal, const Vector2<T>& RightVal)
 	{
 		return RightVal*LeftVal;
 	}
 	
-	template<typename T> inline const Vector2<T>& operator *=(Vector2<T>& LeftVal,const float RightVal)
-	{
-		LeftVal.x *= RightVal;
-		LeftVal.y *= RightVal;
-		return LeftVal;
-	}
-
+	
 	template<typename T> inline std::ostream& operator <<(std::ostream& Ostr, const Vector2<T>& RightVal)
 	{
 		return Ostr<<"("<<RightVal.x<<","<<RightVal.y<<")";

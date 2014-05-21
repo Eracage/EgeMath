@@ -18,7 +18,9 @@ namespace ege
 		template<typename T2>
 		Vector3(const Vector3<T2>& V3);
 		~Vector3();
-		
+
+		Vector2<T> xy() const;
+
 		/*
 		Returns the dot product of 2 different vectors
 		*/
@@ -58,38 +60,40 @@ namespace ege
 		union{ T x, r;};
 		union{ T y, g;};
 		union{ T z, b;};
-			
+
 		const T& operator [](const unsigned int& index) const;
 		T& operator [](const unsigned int& index);
+
+		bool operator ==(const Vector3<T>& RightVal) const;
+		bool operator !=(const Vector3<T>& RightVal) const;
+
+		bool operator <(const Vector3<T>& RightVal) const;
+		bool operator <=(const Vector3<T>& RightVal) const;
+
+		bool operator >(const Vector3<T>& RightVal) const;
+		bool operator >=(const Vector3<T>& RightVal) const;
+
+		Vector3<T>& operator =(const Vector3<T>& RightVal);
+
+		Vector3<T>& operator +=(const Vector3<T>& RightVal);
+		Vector3<T>& operator -=(const Vector3<T>& RightVal);
+
+		Vector3<T>& operator /=(const T& RightVal);
+		Vector3<T>& operator *=(const T& RightVal);
+
+		Vector3<T> operator -() const;
+
+		Vector3<T> operator +(const Vector3<T>& RightVal) const;
+		Vector3<T> operator -(const Vector3<T>& RightVal) const;
+
+		Vector3<T> operator /(const T& RightVal) const;
+		Vector3<T> operator *(const T& RightVal) const;
 	};
 
-	template<typename T> Vector3<T> operator -(const Vector3<T>& RightVal);
-	
-	template<typename T> Vector3<T> operator +(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	template<typename T> Vector3<T> operator -(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	
-	template<typename T> const Vector3<T>& operator +=(Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	template<typename T> const Vector3<T>& operator -=(Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	
-	template<typename T> Vector3<T> operator /(const Vector3<T>& LeftVal,const T& RightVal);
-	template<typename T> const Vector3<T>& operator /=(Vector3<T>& LeftVal,const T& RightVal);
-	
-	template<typename T> bool operator ==(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	template<typename T> bool operator !=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	
-	template<typename T> bool operator <(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	template<typename T> bool operator <=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	
-	template<typename T> bool operator >(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	template<typename T> bool operator >=(const Vector3<T>& LeftVal,const Vector3<T>& RightVal);
-	
-	template<typename T> Vector3<T> operator *(const Vector3<T>& LeftVal, const T& RightVal);
 	template<typename T> Vector3<T> operator *(const T& LeftVal, const Vector3<T>& RightVal);
-	
-	template<typename T> const Vector3<T>& operator *=(Vector3<T>& LeftVal, const T& RightVal);
-	
+
 	template<typename T> std::ostream& operator <<(std::ostream& Ostr, const Vector3<T>& RightVal);
-	
+
 	typedef Vector3<float>          Vec3;
 	typedef Vector3<double>         Vec3d;
 	typedef Vector3<int>            Vec3i;

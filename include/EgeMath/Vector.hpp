@@ -4,8 +4,8 @@
 
 
 
-#include <EgeMath/Vector2.hpp>
-#include <EgeMath/Vector3.hpp>
-#include <EgeMath/Vector4.hpp>
+#include "EgeMath/Vector2.hpp"
+#include "EgeMath/Vector3.hpp"
+#include "EgeMath/Vector4.hpp"
 
 #endif
