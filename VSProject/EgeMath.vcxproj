@@ -15,6 +15,7 @@
     <ClInclude Include="..\include\EgeMath\Matrix2.hpp" />
     <ClInclude Include="..\include\EgeMath\Matrix3.hpp" />
     <ClInclude Include="..\include\EgeMath\Matrix4.hpp" />
+    <ClInclude Include="..\include\EgeMath\Quaternion.hpp" />
     <ClInclude Include="..\include\EgeMath\Rectangle.hpp" />
     <ClInclude Include="..\include\EgeMath\Utils.h" />
     <ClInclude Include="..\include\EgeMath\Vector.hpp" />
@@ -27,6 +28,7 @@
     <None Include="..\include\EgeMath\inline\Matrix2.inl" />
     <None Include="..\include\EgeMath\inline\Matrix3.inl" />
     <None Include="..\include\EgeMath\inline\Matrix4.inl" />
+    <None Include="..\include\EgeMath\inline\Quaternion.inl" />
     <None Include="..\include\EgeMath\inline\Rectangle.inl" />
     <None Include="..\include\EgeMath\inline\Vector2.inl" />
     <None Include="..\include\EgeMath\inline\Vector3.inl" />
